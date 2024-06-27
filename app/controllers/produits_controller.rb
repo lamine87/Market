@@ -1,9 +1,12 @@
 class ProduitsController < ApplicationController
+  before_action :set_produit, only: [:show, :edit, :update, :destroy]
+
   def index
     @produits = Produit.all
   end
 
   def show
+    set_produit
   end
 
   def new
@@ -11,11 +14,11 @@ class ProduitsController < ApplicationController
   end
 
   def edit
+    set_produit
   end
 
   def create
     @produit = Produit.new(produit_params)
-
     if @produit.save
       @produit.image.attach(params[:produit][:image])
       flash[:notice] = 'Article creer avec succès!'   
@@ -28,21 +31,30 @@ class ProduitsController < ApplicationController
 
   def update
     if @produit.update(produit_params)
-      redirect_to @produit, notice: 'Article bien modifié !'
+       redirect_to(:controller =>'produits', :action =>'index')
     else
       render :edit
     end
   end
 
   def destroy
+    
+    @produit.image.purge if @produit.image.attached? 
     @produit.destroy
-    redirect_to produits_url, notice: 'Article bien supprimé !'
+    if @produit.destroyed?
+      flash[:notice] = 'Article supprimé avec succès !'
+      redirect_to(:controller =>'produits', :action =>'index')
+    else
+      flash[:error] = 'Échec de la suppression d\'Article !'
+      redirect_to(:controller =>'produits', :action =>'index')
+    end
+      
   end
 
   private
 
   def set_produit
-    @produit = Produit.find(params[:id])
+    @produit = Produit.find_by(params[:id])
   end
 
   def produit_params

@@ -20,9 +20,8 @@
                     <div class="text-decoration-none">
                     <i class="far fa-envelope fa-lg mb-1"></i>
                     <span class="badge rounded-pill badge-notification bg-danger">HOME</span>
-                    </div>
-                  
-                    <%= link_to "Accueil", {:controller => 'produits', :action => 'index'}  %>
+                    </div> 
+                    <%= link_to "Accueil", {:controller => 'page', :action => 'home'}  %>
                 </div>
                 <div class="nav-item text-center mx-2 mx-lg-1">
                     <div>
@@ -38,7 +37,7 @@
                     </div>
                    
                 </div>
-                
+                             
                 <div class="nav-item text-center mx-2 mx-lg-1">
                     <div>
                     <i class="far fa-envelope fa-lg mb-1"></i>
@@ -53,9 +52,8 @@
                     <span class="badge rounded-pill badge-notification bg-primary">Log</span>
                     </div>
                     <%= link_to 'Connexion', {:controller => 'sessions', :action => 'index'}  %>
-                
                 </div>
-    
+
                 <!-- Dropdown menu -->
                 <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                     <div><a class="dropdown-item" href="#">Action</a></div>
@@ -70,25 +68,34 @@
                 </div>
             </div>
             <!-- Left links -->
-
-            <!-- Right links -->
             <div class="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
+             <div class="nav-item text-center mx-2 mx-lg-1">
+                <a class="nav-link" href="#!">
+                    <div>
+                    <i class="fas fa-bell fa-lg mb-1"></i>
+                    <span class="badge rounded-pill badge-notification bg-info">LP</span>
+                    </div>
+                    <%= link_to "Liste des Produits", {:controller => 'produits', :action => 'index'  }  %>
+                </a>
+                </div>
+
                 <div class="nav-item text-center mx-2 mx-lg-1">
                 <a class="nav-link" href="#!">
                     <div>
                     <i class="fas fa-bell fa-lg mb-1"></i>
-                    <span class="badge rounded-pill badge-notification bg-info">11</span>
+                    <span class="badge rounded-pill badge-notification bg-info">List</span>
                     </div>
-                    Messages
+                    <%= link_to "Liste des users", {:controller => 'users', :action => 'index'  }  %>
                 </a>
                 </div>
+
                 <div class="nav-item text-center mx-2 mx-lg-1">
                 <a class="nav-link" href="#!">
                     <div>
                     <i class="fas fa-globe-americas fa-lg mb-1"></i>
-                    <span class="badge rounded-pill badge-notification bg-success">11</span>
+                    <span class="badge rounded-pill badge-notification bg-success">Add</span>
                     </div>
-                    News
+                    <%= link_to "Ajouter Article", {:controller => 'produits', :action => 'new'  } %>
                 </a>
                 </div>
             </div>

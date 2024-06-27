@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update, :destroy]
 
+  resources :produits, only: [:show, :edit, :update, :destroy]
+
 
   get 'sign_up', to: 'registrations#new'
   post 'sign_up', to: 'registrations#create'
@@ -29,9 +31,11 @@ Rails.application.routes.draw do
 
   get 'login', to: 'sessions#index'
   post 'login', to: 'sessions#create'
-  
+
   get 'logout', to: 'sessions#destroy'
   delete 'logout', to: 'sessions#destroy'
+
+  # get 'produits', to: 'produits#edit'
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

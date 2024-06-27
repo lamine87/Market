@@ -31,10 +31,11 @@ class UsersController < ApplicationController
     @user.destroy
     if @user.destroyed?
       flash[:notice] = 'Utilisateur supprimé avec succès !'
+      redirect_to root_path
     else
       flash[:error] = 'Échec de la suppression de l\'utilisateur !'
     end
-    redirect_to root_path
+      render :index
   end
 
   private
