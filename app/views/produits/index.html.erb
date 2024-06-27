@@ -1,0 +1,49 @@
+
+    <div class="">
+        <h1 class="d-flex align-items-center justify-content-center">Bienvenue en Back-office </h1>
+        <div class="d-flex align-items-center justify-content-center">
+                <%= link_to "Liste des users", {:controller => 'users', :action => 'index'  }, class: 'btn btn-primary mr-2 m-2'  %>
+                <%= link_to "Ajout New Article", {:controller => 'produits', :action => 'new'  }, class: 'btn btn-primary mr-2 m-2'  %>
+                <%= link_to "Déconnexion", logout_path, method: "DELETE", class: 'btn btn-primary mr-2 m-2' %>
+        </div>
+
+
+
+    <table class="table table-striped table-dark">
+      <thead>
+            <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nom de l'Artice</th>
+            <th scope="col">Description</th>
+            <th scope="col">Prix</th>
+             <th scope="col">Image</th>
+            <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @produits.each do | produit| %>
+            <tr>
+                <th scope="row"><%= produit.id %></th>
+                <td><%= produit.nom %></td>
+                <td><%= produit.description %></td>
+                <td><%= produit.prix %>€</td>
+                <td >
+                <% if produit.image.attached? %>
+                    <%= image_tag url_for(produit.image.variant(resize: "60x60")), class: "img-thumbnail" %>
+                <% else %>
+                 Aucune image disponible
+                <% end %>
+                </td>
+                 <td class="d-flex align-items-center justify-content-center">
+                     <%= link_to 'Detail', user_path(produit.id), method: 'GET', class:'btn btn-info mr-2 m-2' %>
+                   	 <%= link_to 'Editer', edit_user_path(produit.id), class: 'btn btn-primary mr-2 m-2' %>
+                     <%= button_to 'Delete', user_path(produit), method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger mr-2' %>
+
+                 </td> 
+            </tr>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+
+

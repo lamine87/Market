@@ -1,0 +1,22 @@
+<div class="container">
+  <h1 class="d-flex align-items-center justify-content-center">Bienvenue sur Market.</h1>
+
+  <div class="row row-cols-1 row-cols-md-3">
+    <% @produits.each do |produit| %>
+      <div class="col-lg-4">
+        <div class="card">
+          <% if produit.image.attached? %>
+            <%= image_tag url_for(produit.image.variant(resize: "200x200")), class: "img-thumbnail" %>
+          <% else %>
+            Aucune image disponible
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= produit.nom %></h5>
+            <p class="card-text"><%= produit.description %></p>
+            <p class="card-text"><small class="text-muted"><%= produit.prix %>€</small></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
