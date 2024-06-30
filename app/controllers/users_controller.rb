@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  PRODUIT_PAGE = 3
-  PRODUIT_PAGE_ADMIN = 3
+  PRODUIT_PAGE = 8
+  PRODUIT_PAGE_ADMIN = 8
 
   def index
     @page = params.fetch(:page, 0).to_i
