@@ -1,27 +1,35 @@
-<h1>Inscription</h1>
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card mt-5 mb-5">
+      <div class="card-body" id="connecter">
+        <h1 class="text-center">Inscription</h1>
 
-<%= form_with model: @user, url: sign_up_path do |form| %>
-    <div class="mb-3">
-        <%= form.label :prenom %>
-        <%= form.text_field :prenom, class: "form-control", placeholder: "jean" %>
+        <%= form_with model: @user, url: sign_up_path do |form| %>
+            <div class="mb-3">
+                <%= form.label :prenom %>
+                <%= form.text_field :prenom, class: "form-control", placeholder: "jean" %>
+            </div>
+                <div class="mb-3">
+                <%= form.label :nom %>
+                <%= form.text_field :nom, class: "form-control", placeholder: "Boucher" %>
+            </div>
+            <div class="mb-3">
+                <%= form.label :email %>
+                <%= form.text_field :email, class: "form-control", placeholder: "jean@gmail.com" %>
+            </div>
+            <div class="mb-3">
+                <%= form.label :password %>
+                <%= form.password_field :password, class: "form-control", placeholder: "password" %>
+            </div>
+            <div class="mb-3">
+                <%= form.label :password_confirmation %>
+                <%= form.password_field :password_confirmation, class: "form-control", placeholder: "password" %>
+            </div>
+            <div class="text-center mb-3">
+                <%= form.submit "Créer un Utilisateur", class: "btn btn-primary" %>
+            </div>
+        <% end %>
+      </div>
     </div>
-        <div class="mb-3">
-        <%= form.label :nom %>
-        <%= form.text_field :nom, class: "form-control", placeholder: "Boucher" %>
-    </div>
-    <div class="mb-3">
-        <%= form.label :email %>
-        <%= form.text_field :email, class: "form-control", placeholder: "jean@gmail.com" %>
-    </div>
-    <div class="mb-3">
-        <%= form.label :password %>
-        <%= form.password_field :password, class: "form-control", placeholder: "password" %>
-    </div>
-    <div class="mb-3">
-        <%= form.label :password_confirmation %>
-        <%= form.password_field :password_confirmation, class: "form-control", placeholder: "password" %>
-    </div>
-    <div class="mb-3">
-        <%= form.submit "Créer un Utilisateur", class: "btn btn-primary" %>
-    </div>
-<% end %>
+  </div>
+</div>

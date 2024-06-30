@@ -17,6 +17,9 @@
                 <div class="nav-item text-center mx-2 mx-lg-1">
                     <%= link_to "Accueil", root_path, class: 'nav-link' %>
                 </div>
+                <div class="nav-item text-center mx-2 mx-lg-1">
+                    <%= link_to "Contact", {:controller => 'contact', :action =>'index' }, class: 'nav-link' %>
+                </div>
                 <% unless session[:user_id] %>
                     <div class="nav-item text-center mx-2 mx-lg-1">
                         <%= link_to 'S\'inscrire', {:controller => 'registrations', :action =>'new' }, class: 'nav-link' %>
@@ -25,7 +28,6 @@
                         <%= link_to 'Connexion', new_session_path, class: 'nav-link' %>
                     </div>
                 <% end %>
-
             </div>
             <!-- Left links -->
 
