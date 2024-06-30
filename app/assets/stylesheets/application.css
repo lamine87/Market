@@ -14,8 +14,8 @@
  *= require_self
  */
 .image{
-    width: 150px !important;
-    height: 150px !important;
+    width: auto !important;
+    height: 240px !important;
 }
 .imageback{
     width: 40px !important;

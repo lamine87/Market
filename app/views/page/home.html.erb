@@ -1,9 +1,9 @@
 <div class="container">
   <h1 class="d-flex align-items-center justify-content-center">Bienvenue sur Market.</h1>
 
-  <div class="row row-cols-1 row-cols-md-3 mb-5">
+  <div class="row row-cols-1 row-cols-md-3 mb-3">
     <% @produits.each do |produit| %>
-      <div class="col-lg-4">
+      <div class="col-lg-3 mb-3">
         <div class="card">
           <% if produit.image.attached? %>
             <%= image_tag(produit.image, class: "image") %>
@@ -14,6 +14,12 @@
             <h5 class="card-title"><%= produit.nom %></h5>
             <p class="card-text"><%= produit.description %></p>
             <p class="card-text"><small class="text-muted"><%= produit.prix %>€</small></p>
+            <p><%= produit.created_at.strftime("%d %b %Y") %></p>
+<%
+=begin%>
+ <p><%= I18n.l(produit.created_at, format: :short) %></p> 
+<%
+=end%>
           </div>
         </div>
       </div>

@@ -1,8 +1,8 @@
 class ProduitsController < ApplicationController
-  before_action :set_produit, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_produit, :require_user, only: [:show, :edit, :update, :destroy]
+  
   def index
-    @produits = Produit.all
+    @produits = Produit.order(created_at: :desc)
   end
 
   def show

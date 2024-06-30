@@ -1,14 +1,6 @@
 
     <div class="">
         <h1 class="d-flex align-items-center justify-content-center">Bienvenue en Back-office </h1>
-        <div class="d-flex align-items-center justify-content-center">
-                <%= link_to "Liste des users", {:controller => 'users', :action => 'index'  }, class: 'btn btn-primary mr-2 m-2'  %>
-                <%= link_to "Ajout New Article", {:controller => 'produits', :action => 'new'  }, class: 'btn btn-primary mr-2 m-2'  %>
-                <%= link_to "Déconnexion", logout_path, method: "DELETE", class: 'btn btn-primary mr-2 m-2' %>
-        </div>
-
-
-
     <table class="table table-striped table-dark">
       <thead>
             <tr>

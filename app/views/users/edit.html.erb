@@ -1,18 +1,17 @@
 <h1 class="d-flex align-items-center justify-content-center">Modifier l'utilisateur</h1>
+  <%= form_with(model: @user, local: true) do |form| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> Utilisateur non sauvegarder :</h2>
+        <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-<%= form_with(model: @user, local: true) do |form| %>
-  <% if @user.errors.any? %>
-    <div class="mb-3" id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> Utilisateur non sauvegarder :</h2>
-
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-     <div class="mb-3">
+    <div class="mb-3">
         <%= form.label :prenom %>
         <%= form.text_field :prenom, class: "form-control" %>
     </div>

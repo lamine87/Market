@@ -1,0 +1,17 @@
+<!-- app/views/users/make_admin_form.html.erb -->
+<h1>Mettre à jour en administrateur</h1>
+<%= form_with(model: @user, url: make_admin_path(@user), method: :patch) do |form| %>
+  <%= form.hidden_field :admin, value: true %>
+  <%= form.submit 'Mettre à jour en administrateur', class: 'btn btn-primary' %>
+<% end %>
+
+<!-- app/views/users/make_admin.html.erb -->
+<% if flash[:success] %>
+  <div class="alert alert-success">
+    <%= flash[:success] %>
+  </div>
+<% elsif flash[:error] %>
+  <div class="alert alert-danger">
+    <%= flash[:error] %>
+  </div>
+<% end %>

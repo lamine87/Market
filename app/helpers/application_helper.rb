@@ -1,2 +1,5 @@
 module ApplicationHelper
-end
+    def format_short_date(date)
+        date.strftime("%d %B %Y")
+    end
+  end

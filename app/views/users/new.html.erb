@@ -1,2 +1,38 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<div class="">
+        <h1 class="d-flex align-items-center justify-content-center mb-5 mt-5">Liste des utilisateurs </h1>
+        <div class="d-flex align-items-center justify-content-center">
+        </div>
+<table class="table table-striped table-dark mb-5">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Prenom</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Email</th>
+      <th scope="col">Admin</th> <!-- New Admin Column -->
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.prenom %></td>
+        <td><%= user.nom %></td>
+        <td><%= user.email %></td>
+        <td>
+            <span class="<%= user.admin ? 'badge badge-success' : 'badge badge-light' %>">
+                <%= user.admin ? 'Admin' : 'User' %>
+            </span>
+        </td>
+        <td>
+          <%= link_to 'Voir détails', user_path(user), class:'btn btn-primary mr-2'  %>
+          <% if !user.admin %>
+            <%= link_to 'Mettre en admin', {:controller => 'users', :action =>'make_admin_form' }, class: 'btn btn-warning' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

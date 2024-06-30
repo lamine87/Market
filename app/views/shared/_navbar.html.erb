@@ -1,123 +1,73 @@
- <!-- Navbar -->
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <!-- Container wrapper -->
-        <div class="container-fluid">
-            <!-- Navbar brand -->
-            <a class="navbar-brand" href="#">Market</a>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="#">Market</a>
 
-            <!-- Toggle button -->
-            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
-            data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
+        <!-- Toggle button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars text-light"></i>
-            </button>
-
-            <!-- Collapsible wrapper -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        </button>
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left links -->
             <div class="navbar-nav me-auto d-flex flex-row mt-3 mt-lg-0">
                 <div class="nav-item text-center mx-2 mx-lg-1">
-                    <div class="text-decoration-none">
-                    <i class="far fa-envelope fa-lg mb-1"></i>
-                    <span class="badge rounded-pill badge-notification bg-danger">HOME</span>
-                    </div> 
-                    <%= link_to "Accueil", {:controller => 'page', :action => 'home'}  %>
+                    <%= link_to "Accueil", root_path, class: 'nav-link' %>
                 </div>
-                <div class="nav-item text-center mx-2 mx-lg-1">
-                    <div>
-                    <i class="far fa-envelope fa-lg mb-1"></i>
-               
+                <% unless session[:user_id] %>
+                    <div class="nav-item text-center mx-2 mx-lg-1">
+                        <%= link_to 'S\'inscrire', {:controller => 'registrations', :action =>'new' }, class: 'nav-link' %>
                     </div>
-                    
-                </div>
-                <div class="nav-item text-center mx-2 mx-lg-1">
-                    <div>
-                    <i class="far fa-envelope fa-lg mb-1"></i>
-                  
+                    <div class="nav-item text-center mx-2 mx-lg-1">
+                        <%= link_to 'Connexion', new_session_path, class: 'nav-link' %>
                     </div>
-                   
-                </div>
-                             
-                <div class="nav-item text-center mx-2 mx-lg-1">
-                    <div>
-                    <i class="far fa-envelope fa-lg mb-1"></i>
-                    <span class="badge rounded-pill badge-notification bg-primary">Sign UP</span>
-                    </div>
-                    <%= link_to 'S\'inscrire', {:controller => 'registrations', :action => 'new'}  %>
-                </div>
+                <% end %>
 
-                <div class="nav-item text-center mx-2 mx-lg-1">
-                    <div>
-                    <i class="far fa-envelope fa-lg mb-1"></i>
-                    <span class="badge rounded-pill badge-notification bg-primary">Log</span>
-                    </div>
-                    <%= link_to 'Connexion', {:controller => 'sessions', :action => 'index'}  %>
-                </div>
-
-                <!-- Dropdown menu -->
-                <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                    <div><a class="dropdown-item" href="#">Action</a></div>
-                    <div><a class="dropdown-item" href="#">Another action</a></div>
-                    <div>
-                    <hr class="dropdown-divider" />
-                    </div>
-                    <div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </div>
-                </div>
             </div>
             <!-- Left links -->
+
+            <!-- Right links -->
             <div class="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
-             <div class="nav-item text-center mx-2 mx-lg-1">
-                <a class="nav-link" href="#!">
-                    <div>
-                    <i class="fas fa-bell fa-lg mb-1"></i>
-                    <span class="badge rounded-pill badge-notification bg-info">LP</span>
-                    </div>
-                    <%= link_to "Liste des Produits", {:controller => 'produits', :action => 'index'  }  %>
-                </a>
+                <% if session[:user_id] %>
+                <div class="nav-item text-center mx-2 mx-lg-1 me-6">
+                    <span class="nav-link">Bonjour, <%= User.find(session[:user_id]).prenom %>!</span>
                 </div>
+                <div class="nav-item text-center mx-2 mx-lg-1 me-6">
+                    <%= link_to "Ajouter Article", new_produit_path, class: 'nav-link' %>
+                </div>
+                <div class="nav-item text-center mx-2 mx-lg-1 me-6">
+                    <%= link_to "Articles", {:controller => 'produits', :action => 'index'}, class: 'nav-link' %>
+                </div>
+                <div class="nav-item text-center mx-2 mx-lg-1 me-6">
+                    <%= link_to 'Déconnexion', logout_path, method: :delete, class: 'nav-link' %>
+                </div>
+                <% end %>
+                <% if session[:user_id] && current_user.admin? %>
+                    <div class="nav-item text-center mx-2 mx-lg-1 me-6">
+                        <%= link_to "Liste Users", {:controller => 'users', :action => 'index'}, class: 'nav-link' %>
+                    </div>
+                    <div class="nav-item text-center mx-2 mx-lg-1 me-6">
+                        <%= link_to "Droit Admin", {:controller => 'users', :action => 'new'}, class: 'nav-link' %>
+                    </div>
+                    
+                <% end %>
 
-                <div class="nav-item text-center mx-2 mx-lg-1">
-                <a class="nav-link" href="#!">
-                    <div>
-                    <i class="fas fa-bell fa-lg mb-1"></i>
-                    <span class="badge rounded-pill badge-notification bg-info">List</span>
-                    </div>
-                    <%= link_to "Liste des users", {:controller => 'users', :action => 'index'  }  %>
-                </a>
-                </div>
-
-                <div class="nav-item text-center mx-2 mx-lg-1">
-                <a class="nav-link" href="#!">
-                    <div>
-                    <i class="fas fa-globe-americas fa-lg mb-1"></i>
-                    <span class="badge rounded-pill badge-notification bg-success">Add</span>
-                    </div>
-                    <%= link_to "Ajouter Article", {:controller => 'produits', :action => 'new'  } %>
-                </a>
-                </div>
             </div>
             <!-- Right links -->
 
             <!-- Search form -->
             <form class="d-flex input-group w-auto ms-lg-3 my-3 my-lg-0">
                 <input type="search" class="form-control" placeholder="Search" aria-label="Search" />
-                <button class="btn btn-primary" type="button" data-mdb-ripple-color="dark">
-                Search
+                <button class="btn btn-primary" type="submit">
+                    Search
                 </button>
             </form>
-            </div>
-            <!-- Collapsible wrapper -->
         </div>
-        <!-- Container wrapper -->
-        </nav>
+        <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+</nav>
 <!-- Navbar -->
-
-
-
-
-
-
-

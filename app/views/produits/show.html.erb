@@ -27,7 +27,7 @@
           </div>
           <div class="d-flex align-items-center justify-content-center">
             <%= link_to 'Éditer', edit_produit_path(@produit), class:'btn btn-primary mr-2' %>
-            <%= link_to 'Retour', root_path, class: 'btn btn-secondary mr-2' %>
+            <%= link_to 'Retour', {:controller => 'produits', :action => 'index'}, class: 'btn btn-secondary mr-2' %>
             <%= button_to 'Delete', produit_path(@produit), method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger' %>
           </div>
         </div>
