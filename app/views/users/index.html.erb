@@ -12,7 +12,7 @@
             <th scope="col">Nom</th>
             <th scope="col">Email</th>
             <th scope="col">Admin</th> <!-- New Admin Column -->
-            <th scope="col">Actions</th>
+            <th scope="col" class="d-flex align-items-center justify-content-center">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -38,4 +38,20 @@
             <% end %>
         </tbody>
       </table>
+    <div class="d-flex justify-content-center">
+    <% if @page > 0 %>
+        <span class="badge badge-primary fs-5">
+        <%= link_to "Précédant", {:controller => 'users', :action =>'index', page: @page - 1  } %>
+        </span>
+    <% end %>
+    
+    <div class="me-4"></div>
+    
+    <% if @user.size == UsersController::PRODUIT_PAGE %>
+        <span class="badge badge-primary fs-5">
+        <%= link_to "Suivant", {:controller => 'users', :action =>'index', page: @page + 1  } %>
+        </span>
+    <% end %>
+    <div class="mb-5"></div>
     </div>
+</div>

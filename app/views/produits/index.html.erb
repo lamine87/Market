@@ -9,7 +9,7 @@
             <th scope="col">Description</th>
             <th scope="col">Prix</th>
              <th scope="col">Image</th>
-            <th scope="col">Actions</th>
+            <th scope="col" class="d-flex align-items-center justify-content-center">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -35,6 +35,23 @@
             <% end %>
         </tbody>
       </table>
+    <div class="d-flex justify-content-center">
+    <% if @page > 0 %>
+        <span class="badge badge-primary fs-5">
+        <%= link_to "Précédant", produits_path(page: @page - 1) %>
+        </span>
+    <% end %>
+    
+    <div class="me-4"></div>
+    
+    <% if @produits.size == ProduitsController::PRODUIT_PAGE %>
+        <span class="badge badge-primary fs-5">
+        <%= link_to "Suivant", produits_path(page: @page + 1) %>
+        </span>
+    <% end %>
+    <div class="mb-5"></div>
     </div>
+
+ </div>
 
 

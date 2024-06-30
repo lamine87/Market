@@ -1,8 +1,10 @@
 class ProduitsController < ApplicationController
   before_action :set_produit, :require_user, only: [:show, :edit, :update, :destroy]
+  PRODUIT_PAGE = 8
   
   def index
-    @produits = Produit.order(created_at: :desc)
+    @page = params.fetch(:page, 0).to_i
+    @produits = Produit.offset(@page * PRODUIT_PAGE).limit(PRODUIT_PAGE).order(created_at: :desc)
   end
 
   def show

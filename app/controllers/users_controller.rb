@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  PRODUIT_PAGE = 3
+  PRODUIT_PAGE_ADMIN = 3
 
   def index
-    @user = User.all
+    @page = params.fetch(:page, 0).to_i
+    @user = User.offset(@page * PRODUIT_PAGE).limit(PRODUIT_PAGE).order(created_at: :desc)
   end
 
 
-  
   # GET /users/:id
   def show
     set_user
@@ -45,7 +47,8 @@ class UsersController < ApplicationController
     end
 
     def new
-      @user = User.all
+      @page = params.fetch(:page, 0).to_i
+      @user = User.offset(@page * PRODUIT_PAGE_ADMIN).limit(PRODUIT_PAGE_ADMIN).order(created_at: :desc)
     end
   
     def make_admin_form
@@ -62,6 +65,8 @@ class UsersController < ApplicationController
         render :make_admin_form
       end
     end
+
+    
 
   private
 
